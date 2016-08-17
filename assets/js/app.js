@@ -205,10 +205,10 @@
               //  layer.on({click: populatepie});
                 layer.on({click: populatebarchart});
                 $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) +
-                 '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td class="feature-name">' + 
-                 layer.feature.properties.Name + '</td>'+
-                '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_Y).format('0,0') +'</td>'+
-                '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_Y).format('0,0') +'</td>'+
+                 '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '">'+
+                '<td class="feature-name">' + layer.feature.properties.Name + '<a class="detaileddata" href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=' + layer.feature.properties.GEOID + '" target="_blank">Access Detailed Data</a></td>'+
+              // Ped  Yesterday  '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_Y).format('0,0') +'</td>'+
+              // Bike Yesterday '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_Y).format('0,0') +'</td>'+
                 '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_W).format('0,0') +'</td>'+
                 '<td style="vertical-align: middle;text-align:center">'+ numeral(layer.feature.properties.BIKE_W).format('0,0') +'</td>'+
                 '<td class="table-ped" style="vertical-align: middle;text-align:center">'+numeral(layer.feature.properties.PED_YTD).format('0,0') +'</td>'+
