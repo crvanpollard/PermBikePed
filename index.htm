@@ -4,12 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#000000">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>DVRPC - Permanent Bicycle and Pedestrian Counts</title>
+    <title>DVRPC - Permanent Bicycle and Pedestrian Counters</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -19,118 +14,94 @@
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/leaflet_label.css">
     <link rel="stylesheet" href="assets/css/style.css">
-
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon-76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon-120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon-152.png">
-    <link rel="icon" sizes="196x196" href="assets/img/favicon-196.png">
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
   </head>
 
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
         <div class="navbar-header">
-           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            <span><a class="navbar-brand" href="http://www.dvrpc.org/" target="_blank"><img src="http://www.dvrpc.org/webmaps/tcdi/images/dvrpc_logo.png" alt="DVRPC" style="max-height:30px;margin:-10px 10px -10px 0;"/></a>
+          <div class="navbar-icon-container">
+            <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+            <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
+          </div>
+              <span><a class="navbar-brand" href="http://www.dvrpc.org/" target="_blank"><img src="http://www.dvrpc.org/webmaps/tcdi/images/dvrpc_logo.png" alt="DVRPC" style="max-height:30px;margin:-4px 10px -10px 0;"/></a>
               <img  style="margin:5px 0px 0px 0px" src="assets/img/bikeped_logo.png"/>   
               </span>
         </div>
-        <div class="navbar-collapse collapse">
-       <!--   <ul id='landing' class="nav navbar-nav">
-            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
-            <li class="dropdown">
-              <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Tools <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
-                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;Detailed Count Information</a></li>
-              </ul>
-            </li>
-            <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Station List</a></li>
+        <div class="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" id="about-btn"><i class="fa fa-info-circle white"></i>&nbsp;&nbsp;About</a></li>
+           <!--  <li><a href="#" id="legend-btn"><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;Detailed Count Information</a></li> -->
+            <li><a href="#" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
           </ul>
--->
-          <ul id='landing' class="nav navbar-nav">
-                <li><a href="#home" class='landingLink' data-tab='home' data-toggle="collapse" data-target=".navbar-collapse.in"><i class="dynico dynico-home"></i>&nbsp;&nbsp;Home</a></li>
-            
-                <li id='maplink' class='landingUI'><a href="#map" data-tab='map' data-toggle="collapse" data-target=".navbar-collapse.in"><i class="dynico dynico-map"></i>&nbsp;&nbsp;View Map</a></li>
-            </ul>
         </div><!--/.navbar-collapse -->
+      </div>
     </div>
 
-    <div id='pFFlanding' class='landing fade in landtab-content landingUI'>
-            
-            <!--home tab-->
-                <div id ='home' class='tab-pane active in landing-content'style='color:#333333;'>
-                    <div class='center-block col-lg-9 col-md-10' style='float:none;'>
-                        <h3>Welcome to <i>PhillyFreightFinder, </i>the freight mapping and data platform for the Delaware Valley!</h3> 
-                    </div>
-                    <div class='center-block col-lg-9 col-md-10' style='float:none;'>
-                        <div class='col-md-6'>
-                            <p><i>PhillyFreightFinder</i> is a dynamic, web-based mapping application that pinpoints freight facilities and freight activity in the Philadelphia-Camden-Trenton region. In addition, this tool also highlights how the various freight system components intertwine and complement one another.</p>
-                            <p><i>PhillyFreightFinder</i> contains 20 individual layers and over 350 features of infrastructure and facilities that are organized into seven categories. These elements form the core of the region’s extraordinary freight network and services that link the region to the global economy.</p>
-                            <p><i>PhillyFreightFinder </i>is fully customizable, giving you-the user, the ability to easily control both the extent of the mapping window and the combination of layers to be displayed.</p>
-                        </div> 
-                    </div>
-                </div>   
-        </div>
-
-<!-- Start Map and Charts -->
-   <!--  <div id="container" class='tab-pane landing-content'> -->
-      <div class="row ocontent mapUI" id="container">
-      <div id="upper-panel">
-        <div id="sidebar" class="col-sm-4">
-          <div class="sidebar-wrapper">
-            <div class="panel panel-default" id="features">
-    
-              <div class="sidebar-table">
+<!-- Start Main Body -->
+    <div id="container">
+        <div id="sidebar" class="col-sm-8">
+          <!-- <div class="panel panel-primary" id="card">
+              <div class="card-title">Regional Overview</div>
+          </div> -->
+             <div class="panel panel-primary" id="regionallist" style="border: medium none;">
+                <div class="sidebar-table">
                 <table class="table table-hover" id="feature-list">
                   <thead >
-                      <th>Station</th>
-                      <th><img src="assets/img/bike_list.png"/> Bicycle</th>
-                      <th><img src="assets/img/ped_list.png"/>  Pedestrian</th>
-                      <th>Total Volume</th>
+                    <tr class="table-toprow">
+                      <TH COLSPAN=1></TH>
+                     <!-- <TH COLSPAN=2 class="table-th">Yesterday<br>(4/29/2016)</TH> -->
+                      <TH COLSPAN=2 class="table-th">Previous Month<br>(7/1-7/31/2016)</TH>
+                      <TH COLSPAN=2 class="table-th">Year-to-date<br>(1/1-7/31/2016)</TH>
+                    </tr>
+                    <tr class="table-bottomrow">
+                      <th class="table-th1" >Location</th>
+                    <!--  <th class="table-thp" >Pedestrian</th> -->
+                    <!--  <th class="table-thb" >Cyclists</th> -->
+                      <th class="table-thp" >Pedestrian</th>
+                      <th class="table-thb" >Cyclists</th>
+                      <th class="table-thp" >Pedestrian</th>
+                      <th class="table-thb" >Cyclists</th>
+                    </tr>
                   </thead>
-                  <tbody class="list"></tbody>
+                  <tbody class="list" id="datarow"></tbody>
                 </table>
-              </div>
+            </div>
+             </div> 
+
+            <div class="row" id="datadisclaimer">This webpage contains data as reported by automated cyclist and pedestrian counting equipment. Data is not adjusted to correct errors due to equipment malfunction or failure. See disclaimer. </div>  
+
+           <div class="row" id="barcharts"> 
+             <div class="panel panel-primary" id="card">
+             <div class="card-title">Station Information</div>
+             </div>
+            <div id="cardclick">
+             <h2>Click on location name for month-by-month data</h2>
+            </div>
+            <div class="col-sm-6">
+            <div class="panel panel-primary" id="cardpedpanel">
+            <div class="panel-heading" id="cardped"></div>
+            <div id="Monthly2" class="barchart"></div>
+            </div>
+            </div>
+            <div class="col-sm-6" >
+            <div class="panel panel-primary" id="cardbikepanel">
+            <div class="panel-heading" id="cardbike"></div>
+            <div id="Monthly" class="barchart"></div>
+            </div>
             </div>
           </div>
-        </div> <!--close sidebar-->      
+    
        
-          <div id="datainfo" class="col-sm-4"></div> 
-        
-          <div id="map" class="col-sm-4"></div>
-        </div>
-      <div id="lower-panel" style="overflow: scroll; overflow-x: hidden;">  
-       
-        <div class="col-sm-9 col-lg-9">
-           <!-- <h2>Monthly Summary</h2> -->
-             <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="pill" href="#chart">Chart</a></li>
-                <li><a data-toggle="pill" href="#table">Table</a></li>
-             </ul>
-             <div class="tab-content">
-                 <div id="chart" class="tab-pane fade in active">
-                    <div id="Monthly" class="barchart"></div>
-                </div>
-                <div id="table" class="tab-pane fade">
-                    <div id="table_data" class="infosidebar"></div>
-                </div>
-             </div>
-        </div>
+      </div>
 
-        <div class="col-sm-3 col-lg-3 nopadding">
-           <div id="infographs">
-             <div id="bikepeddata" class="piechart"></div>
-           </div>
-        </div>
-    </div>  
-</div>
+      <div id="sidebar2" class="col-sm-4">
+        <div id="map"></div>
+      </div>  
 
-<!-- End Map and Charts -->
+ </div>     
+
+<!-- End Main Body -->
     
     <div id="loading">
       <div class="loading-indicator">
@@ -149,13 +120,21 @@
           </div>
           <div class="modal-body">
             <ul class="nav nav-tabs" id="aboutTabs">
-              <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;About the project</a></li>
-              <li><a href="#contact" data-toggle="tab"><i class="fa fa-envelope"></i>&nbsp;Contact us</a></li>
+              <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-info-circle"></i>&nbsp;About</a></li>
+              <li><a href="#contact" data-toggle="tab"><i class="fa fa-envelope"></i>&nbsp;Contact</a></li>
               <li><a href="#disclaimer" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Disclaimer</a></li>
             </ul>
             <div class="tab-content" id="aboutTabsContent">
               <div class="tab-pane fade active in" id="about">
-                <p>This map displays permanent pedestrian and bicycle count data within the DVRPC region. Review detailed monthly count information, average amounts by mode, and use the detailed search tool to view and export count data on a daily, hourly and 15 minute intervals.</p>
+                <p>This map displays data from permanent bicycle and pedestrian counters operated by DVRPC. Trail use counters, located on Circuit Trails throughout the region, record use by direction and by mode (walking vs. bicycling) continuously throughout the course of a year. This interactive map provides a snapshot of this data in a simple, user-friendly format allowing users to explore counts from throughout the region. More detailed data is available here.<br>
+                DVRPC also takes short-duration bicycle and pedestrian counts. Data from these counts is available here.<br>
+
+                The William Penn Foundation and Pennsylvania Environmental Council provided generous support for the acquisition of the counters. DVRPC personnel installed and maintain the equipment on an ongoing basis. <br>
+                
+                While every effort is made on the part of DVRPC to provide valid and current information, DVRPC makes no representation nor warranties, express or implied, about the validity of this information and is not to be held responsible for errors in data obtained from this website. 
+
+                </p>
+                <p>
               </div>
               <div id="disclaimer" class="tab-pane fade text-danger">
                 <p>The data provided on this site is for informational and planning purposes only.</p>
@@ -194,12 +173,10 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">
-              Original bootleaft template developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a>
-            </h4>
           </div>
           <div class="modal-body">
-            <div id="attribution"></div>
+            <div id="attribution">
+             &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a></div>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -220,10 +197,13 @@
       <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=3" target="_blank">Detail</a></td><td>3</td><td>Cynwyd Heritage Trail</td></tr>
       <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=4" target="_blank">Detail</a></td><td>4</td><td>Wissahickon Trail</td></tr>
       <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=5" target="_blank">Detail</a></td><td>5</td><td>Schuylkill River Trail (Kelly Dr)</td></tr>
+      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=6" target="_blank">Detail</a></td><td>6</td><td>Schuylkill River Trail (Schuykill Banks)</td></tr>
       <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=7" target="_blank">Detail</a></td><td>7</td><td>Port Richmond Trail</td></tr>
       <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=8" target="_blank">Detail</a></td><td>8</td><td>Lawrence-Hopewell Trail</td></tr>
       <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=9" target="_blank">Detail</a></td><td>9</td><td>US 202 Parkway Trail</td></tr>
+      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=10" target="_blank">Detail</a></td><td>10</td><td>Monroe Township trail</td></tr>
       <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=11" target="_blank">Detail</a></td><td>11</td><td>Cooper River Trail</td></tr>
+      <tr><td><a href="http://www.dvrpc.org/asp/bikeped/detailCount.aspx?ID=12" target="_blank">Detail</a></td><td>12</td><td>Darby Creek Trail</td></tr>
       </table>
           </div>
           <div class="modal-footer">
@@ -241,10 +221,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.js"></script>
     <script src="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="assets/js/app.js"></script>
     <script src="assets/js/numeral.js"></script>
     <script src="assets/js/leaflet.label.js"></script>
     <script src="assets/js/leaflet.viewcenter.js"></script>
-    <script type="text/javascript" src="assets/js/core.js"></script><!--core application functions -->
+    <script src="assets/js/app.js"></script>
+    
+    <script>var _gaq=[['_setAccount','UA-9825778-1'],['_trackPageview']];(function(d){var g=d.createElement('script'),s=d.scripts[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document))</script>
+
   </body>
 </html>
